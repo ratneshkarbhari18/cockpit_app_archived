@@ -11,11 +11,84 @@
             <?php endforeach; ?>
         </div>
     </section>
-    <section id="slides-section">
+    <?php if(count($products)>0): ?>
+    <section class="usual-section" id="products-section">
         <div class="container">
+            <h1 class="section-title text-center">Products</h1>
+        
+            <div class="row">
+                <?php $j=0; for($i=0;$i<count($products);$i++): if($j<4): ?>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a href="<?php echo "http://".$business_data["subdomain"].".".$_ENV["CLIENT_URL_NON_HTTP"]."product/".$products[$i]["slug"]; ?>">
+                    <div class="card">
+                        <img src="<?php echo $_ENV["SERVER_URL"]."user_assets/images/product_service_featured_images/".$products[$i]["featured_image"]; ?>" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="product-service-title"><?php echo $products[$i]["title"]; ?></h4>
+                            <?php echo $products[$i]["currency"]." ".$products[$i]["price"]; ?>
+                        </div>    
+                    </div>
+                    </a>
+                </div>
+                <?php endif; $j++; endfor; ?>
+            </div>
+            
+            <div class="text-center">
+                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."products"; ?>" class="btn btn-primary">See All Products</a>
+            </div>
+
+        </div>
+    </section>
+    <?php endif; ?>
+    <?php if(count($services)>0): ?>
+    <section class="usual-section" id="services-section">
+        <div class="container">
+            <h1 class="section-title text-center">Services</h1>
+        
+            <div class="row">
+                <?php for($i=0;$i<count($services);$i++): ?>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a href="<?php echo "http://".$business_data["subdomain"].".".$_ENV["CLIENT_URL_NON_HTTP"]."product/".$services[$i]["slug"]; ?>">
+                    <div class="card">
+                        <img src="<?php echo $_ENV["SERVER_URL"]."user_assets/images/product_service_featured_images/".$services[$i]["featured_image"]; ?>" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="product-service-title"><?php echo $services[$i]["title"]; ?></h4>
+                        </div>    
+                    </div>
+                    </a>
+                </div>
+                <?php endfor; ?>
+            </div>
+
+            <div class="text-center">
+                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."services"; ?>" class="btn btn-primary">See All Services</a>
+            </div>
+
+        </div>
+    </section>
+    <?php endif; ?>
+    <?php if($about_home!=""): ?>
+    <section class="usual-section" id="about">
+        <div class="container">
+            <h1 class="section-title text-center">About</h1>
+            
+            <?php echo $about_home; ?>
             
         </div>
     </section>
+    <?php endif; ?>
+    <?php if($business_data["email"]!=""||$business_data["contact_number"]!=""): ?>
+    <section class="usual-section" id="about">
+        <div class="container">
+            <h1 class="section-title text-center">Contact</h1>
+            <p>
+                Email: <?php echo $business_data["email"]; ?>
+            </p>
+            <p>
+                Contact: <?php echo $business_data["mobile_number"]; ?>
+            </p>
+        </div>
+    </section>
+    <?php endif; ?>
 </main>
 <style>
     .slide{

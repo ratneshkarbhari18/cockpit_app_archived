@@ -55,7 +55,7 @@ class PageLoader extends BaseController
 
             $logoPath = $_ENV["SERVER_URL"]."user_assets/images/logos/".$businessData["logo"];
 
-            $data = array("title"=>"Home | ".$businessData["business_name"],"business_data"=>$businessData,"slides"=>$slides,"products"=>$products,"services"=>$services,"logo_path"=>$logoPath);
+            $data = array("title"=>"Home | ".$businessData["business_name"],"business_data"=>$businessData,"slides"=>$slides,"products"=>$products,"services"=>$services,"logo_path"=>$logoPath,"about_home"=>$bizData["about_home"]);
 
             $this->page_loader("home",$data);
 

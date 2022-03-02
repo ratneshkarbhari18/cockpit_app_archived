@@ -4,3 +4,22 @@
 .text-dark{
     color: #424242 !important;
 }
+
+.product-service-title{
+    margin: 0.5em 0;
+}
+.usual-section{
+    padding: 3em 0;
+}
+a{
+    text-decoration: none;
+}
+img#waIcon{
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 900;
+}
+strong{
+    font-weight : bold;
+}
