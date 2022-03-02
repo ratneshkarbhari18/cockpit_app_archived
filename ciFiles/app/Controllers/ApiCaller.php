@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use PhpParser\Node\Stmt\Echo_;
+use App\Libraries\EnvFetcher;
 
 class ApiCaller extends BaseController
 {
@@ -10,7 +11,13 @@ class ApiCaller extends BaseController
 
     private function endpointCreator($endpointSlug)
     {
-        return "http://localhost/products/cockpitMVP/".$endpointSlug;
+
+        $envFetcher = new EnvFetcher(".env");
+
+        $envFetcher->load();
+
+        return getenv("SERVER_URL").$endpointSlug;
+        
     }
 
     private $saasApiKey = "620f56c2c2d4b";
@@ -18,7 +25,9 @@ class ApiCaller extends BaseController
     public function postApi($endPointSlug,$data)
     {
 
+
         $endPoint = $this->endpointCreator($endPointSlug);
+
 
         $curl = curl_init();
 
@@ -31,7 +40,7 @@ class ApiCaller extends BaseController
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array("apiKey"=>$this->saasApiKey,"subdomain"=>"testsubdomain"),
+        CURLOPT_POSTFIELDS => array("apiKey"=>$this->saasApiKey,"subdomain"=>$data["data"]["subdomain"]),
         ));
 
         $response = curl_exec($curl);
