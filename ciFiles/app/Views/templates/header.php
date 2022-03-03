@@ -16,7 +16,7 @@
     <header id="header">
         <nav class="navbar navbar-expand-lg text-dark" style="box-shadow:0 0 5px darkgrey;">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]; ?>">
                     <img src="<?php echo $logo_path; ?>" class="w-50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

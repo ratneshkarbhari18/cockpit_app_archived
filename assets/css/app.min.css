@@ -23,3 +23,20 @@ img#waIcon{
 strong{
     font-weight : bold;
 }
+footer#main {
+background-color: #424242; color: white; padding: 2em 0 1em 0;
+}
+ul.footer-list{
+list-style: none;
+    padding-left: 0;
+}
+a.navbar-brand{
+    width: 20%;
+}
+
+a.navbar-brand img{
+    width: 100%;
+}
+.see-more-button{
+    margin-top: 2em !important;
+}

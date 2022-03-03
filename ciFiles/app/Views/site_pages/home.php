@@ -33,7 +33,7 @@
             </div>
             
             <div class="text-center">
-                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."products"; ?>" class="btn btn-primary">See All Products</a>
+                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."products"; ?>" class="btn btn-primary see-more-button">See All Products</a>
             </div>
 
         </div>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="text-center">
-                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."services"; ?>" class="btn btn-primary">See All Services</a>
+                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."services"; ?>" class="btn btn-primary see-more-button">See All Services</a>
             </div>
 
         </div>
@@ -72,23 +72,35 @@
             <h1 class="section-title text-center">About</h1>
             
             <?php echo $about_home; ?>
+
+            <div class="text-center">
+                <a href="<?php echo "http://".$business_data["subdomain"].'.'.$_ENV["CLIENT_URL_NON_HTTP"]."about"; ?>" class="btn btn-primary see-more-button">Know more about us</a>
+            </div>
             
         </div>
     </section>
     <?php endif; ?>
     <?php if($business_data["email"]!=""||$business_data["contact_number"]!=""): ?>
     <section class="usual-section" id="about">
-        <div class="container">
+        <div class="container" >
             <h1 class="section-title text-center">Contact</h1>
-            <p>
-                Email: <?php echo $business_data["email"]; ?>
-            </p>
-            <p>
-                Contact: <?php echo $business_data["mobile_number"]; ?>
-            </p>
+
+            <div class="contact-content text-center" style="margin-top: 3em;margin-bottom: 1em;">
+                <div class="card-body">
+                <p>
+                    Email: <a style="text-decoration: underline;" href="mailto:<?php echo $business_data["email"]; ?>"><?php echo $business_data["email"]; ?></a>
+                </p>
+                <p>
+                    Contact: <a style="text-decoration: underline;" href="tel:<?php echo $business_data["mobile_number"]; ?>"><?php echo $business_data["mobile_number"]; ?></a> 
+                </p>
+                <p>Address: <?php echo $business_data["address"]; ?></p>
+                </div>
+            </div>
+            
         </div>
     </section>
     <?php endif; ?>
+    
 </main>
 <style>
     .slide{
