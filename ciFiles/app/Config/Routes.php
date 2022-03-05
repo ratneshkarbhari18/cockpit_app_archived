@@ -33,6 +33,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'PageLoader::home');
 $routes->get("products","PageLoader::products_page");
+$routes->get("services","PageLoader::services_page");
+$routes->get("about","PageLoader::about_page");
+$routes->get("contact","PageLoader::contact_page");
 
 /*
  * --------------------------------------------------------------------
