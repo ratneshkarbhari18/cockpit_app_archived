@@ -36,6 +36,7 @@ $routes->get("products","PageLoader::products_page");
 $routes->get("services","PageLoader::services_page");
 $routes->get("about","PageLoader::about_page");
 $routes->get("contact","PageLoader::contact_page");
+$routes->get("product/(:any)","PageLoader::product_page/$1");
 
 /*
  * --------------------------------------------------------------------

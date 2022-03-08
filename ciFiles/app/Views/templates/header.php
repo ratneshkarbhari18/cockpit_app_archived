@@ -20,7 +20,9 @@
                     <img src="<?php echo $logo_path; ?>" class="w-100">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+                    <img src="<?php echo site_url("assets/icons/menu.svg"); ?>" style="width: 20px; height: 20px;">
+                
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
@@ -49,6 +51,7 @@
             </div>
         </nav>
     </header>
+
     
 </body>
 </html>

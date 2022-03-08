@@ -34,7 +34,7 @@ class PageLoader extends BaseController
 
         $apiCaller = new ApiCaller();
 
-        $bizData = $apiCaller->postApi("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
         $bizData = json_decode($bizData,TRUE);
 
@@ -68,7 +68,7 @@ class PageLoader extends BaseController
 
         $apiCaller = new ApiCaller();
 
-        $bizData = $apiCaller->postApi("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
         $bizData = json_decode($bizData,TRUE);
 
@@ -101,7 +101,7 @@ class PageLoader extends BaseController
 
         $apiCaller = new ApiCaller();
 
-        $bizData = $apiCaller->postApi("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
         $bizData = json_decode($bizData,TRUE);
 
@@ -134,7 +134,7 @@ class PageLoader extends BaseController
 
         $apiCaller = new ApiCaller();
 
-        $bizData = $apiCaller->postApi("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
         $bizData = json_decode($bizData,TRUE);
 
@@ -168,7 +168,7 @@ class PageLoader extends BaseController
 
         $apiCaller = new ApiCaller();
 
-        $bizData = $apiCaller->postApi("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
         $bizData = json_decode($bizData,TRUE);
 
@@ -197,5 +197,63 @@ class PageLoader extends BaseController
 
         }
     }
+
+    public function product_page($slug)
+    {
+     
+        $storeSubdomain = $this->getSlug();
+
+        $apiCaller = new ApiCaller();
+
+        $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
+
+        $bizData = json_decode($bizData,TRUE);
+
+        if ($bizData["result"]=="error") {
+            
+            echo view("templates/error",array("error_message"=>$bizData["message"]));
+
+
+        
+        } else {
+
+            $bizData = $bizData["site_data"];    
+
+            $businessData = $bizData["bizdata"];
+            $services = $bizData["services"];
+
+            $products = $bizData["products"];
+
+
+            $logoPath = $_ENV["SERVER_URL"]."user_assets/images/logos/".$businessData["logo"];
+
+            helper("form");
+
+            $data = $apiCaller->fetchProductData("fetch-product",array("data"=>array("apiKey"=>$this->authKey,"slug"=>$slug)));
+
+            $data = json_decode($data,TRUE);
+
+
+            if ($data["result"]=="error") {
+
+                echo view("templates/error",array("error_message"=>$bizData["message"]));
+
+    
+            }else {
+
+                $hero_product = $data["data"];
+
+                $data = array("title"=>$hero_product["title"]." | ".$businessData["business_name"],"business_data"=>$businessData,"products"=>$products,"services"=>$services,"logo_path"=>$logoPath,"hero_product"=>$hero_product);
+                
+            }
+
+
+
+            $this->page_loader("product_page",$data);
+
+        }
+        
+    }
+
 
 }
