@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/products/cockpit_sites/';
+    public $baseURL = 'https://getcockpit.tech/apps/sites/';
 
     /**
      * --------------------------------------------------------------------------

@@ -36,30 +36,45 @@ class PageLoader extends BaseController
 
         $bizData = $apiCaller->postApiBizData("site-data-fetch",array("data"=>array("apiKey"=>$this->authKey,"subdomain"=>$storeSubdomain)));
 
+
+
         $bizData = json_decode($bizData,TRUE);
 
-        if ($bizData["result"]=="error") {
+
+
+        if (!isset($bizData["result"])) {
             
-            echo view("templates/error",array("error_message"=>$bizData["message"]));
-        
+            echo "<h4>No Result</h4>";
+            
         } else {
-
-            $bizData = $bizData["site_data"];    
-
-            $businessData = $bizData["bizdata"];
-
-            $slides = $bizData["slides"];
-
-            $products = $bizData["products"];
-            $services = $bizData["services"];
-
-            $logoPath = $_ENV["SERVER_URL"]."user_assets/images/logos/".$businessData["logo"];
-
-            $data = array("title"=>"Home | ".$businessData["business_name"],"business_data"=>$businessData,"slides"=>$slides,"products"=>$products,"services"=>$services,"logo_path"=>$logoPath,"about_home"=>$bizData["about_home"]);
-
-            $this->page_loader("home",$data);
-
+            
+            if ($bizData["result"]=="error") {
+            
+                echo view("templates/error",array("error_message"=>$bizData["message"]));
+            
+            } else {
+    
+                $bizData = $bizData["site_data"];    
+    
+                $businessData = $bizData["bizdata"];
+    
+                $slides = $bizData["slides"];
+    
+                $products = $bizData["products"];
+                $services = $bizData["services"];
+    
+                $logoPath = $_ENV["SERVER_URL"]."user_assets/images/logos/".$businessData["logo"];
+    
+                $data = array("title"=>"Home | ".$businessData["business_name"],"business_data"=>$businessData,"slides"=>$slides,"products"=>$products,"services"=>$services,"logo_path"=>$logoPath,"about_home"=>$bizData["about_home"]);
+    
+                $this->page_loader("home",$data);
+    
+            }
+            
         }
+        
+
+        
     }
 
     public function products_page()

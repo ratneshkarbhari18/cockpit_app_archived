@@ -15,12 +15,11 @@ class ApiCaller extends BaseController
     public function postApiBizData($endPointSlug,$data)
     {
 
-        $envFetcher = new EnvFetcher("./.env");
+        $envFetcher = new EnvFetcher(".env");
 
         $envFetcher->load();
 
         $endPoint = $_ENV["SERVER_URL"].$endPointSlug;
-
 
         $curl = curl_init();
 
@@ -46,7 +45,7 @@ class ApiCaller extends BaseController
 
     public function fetchProductData($endPointSlug,$data)
     {
-        $envFetcher = new EnvFetcher("./.env");
+        $envFetcher = new EnvFetcher(".env");
 
         $envFetcher->load();
 
